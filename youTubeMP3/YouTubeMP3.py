@@ -73,10 +73,13 @@ for row in sheet.iter_rows(min_row = 2, values_only=True):
         os.makedirs(MovieFolder)
 
     if os.path.exists(os.path.join(MovieFolder, SongName+".mp3")):
-        print(SongName+".mp3 - exists")
+        print(intend + SongName+".mp3 - exists")
     else:
         # download_youtube_video_as_mp3(cell_value_b, MovieFolder)
         download_youtube_video(cell_value_b, MovieFolder, SongName+".mp3")
-        print(SongName+".mp3 - downloaded")
+        print(intend + SongName+".mp3 - downloaded")
 
 #download_youtube_video_as_mp3(cell_value_b, MovieFolder, SongName+.mp3)
+
+print('['+datetime.now().strftime("%Y-%m-%d %H:%M:%S")+'] [' + current_filename  + "] Completed - Considering config: ["
+      + configFile + "]")
