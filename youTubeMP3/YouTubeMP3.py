@@ -63,23 +63,31 @@ sheet = workbook.active  # Assuming you want to read from the active sheet
 # print(read_excel(workbookPath, 2, 2))
 
 for row in sheet.iter_rows(min_row = 2, values_only=True):
-    cell_value_b = row[1]  # Value from column B (index 1) #URL
-    cell_value_c = row[2]  # Value from column C (index 2) #MovieName-Song
-    movieName, SongName = cell_value_c.split("-")
+    try:
+        cell_value_b = row[1]  # Value from column B (index 1) #URL
+        cell_value_c = row[2]  # Value from column C (index 2) #MovieName-Song
+        language, movieName, SongName = cell_value_c.split("-")
 
-    # Create the necessary MovieFolder
-    MovieFolder = os.path.join(downloadto, movieName)
-    if not os.path.exists(MovieFolder):
-        os.makedirs(MovieFolder)
+        # Create the necessary language folder
+        LanguageFolder = os.path.join(downloadto, language)
+        if not os.path.exists(LanguageFolder):
+            os.makedirs(LanguageFolder)
 
-    if os.path.exists(os.path.join(MovieFolder, SongName+".mp3")):
-        print(intend + SongName+".mp3 - exists")
-    else:
-        # download_youtube_video_as_mp3(cell_value_b, MovieFolder)
-        download_youtube_video(cell_value_b, MovieFolder, SongName+".mp3")
-        print(intend + SongName+".mp3 - downloaded")
+        # Create the necessary MovieFolder
+        MovieFolder = os.path.join(LanguageFolder, movieName)
+        if not os.path.exists(MovieFolder):
+            os.makedirs(MovieFolder)
+
+        if os.path.exists(os.path.join(MovieFolder, SongName+".mp3")):
+            print(intend + SongName+".mp3 - exists")
+        else:
+            # download_youtube_video_as_mp3(cell_value_b, MovieFolder)
+            download_youtube_video(cell_value_b, MovieFolder, SongName+".mp3")
+            print(intend + SongName+".mp3 - downloaded")
+
+    except Exception as e:
+        print(intend + f"<<<error occurred>>>: {e}:  Row: {row}")
 
 #download_youtube_video_as_mp3(cell_value_b, MovieFolder, SongName+.mp3)
 
-print('['+datetime.now().strftime("%Y-%m-%d %H:%M:%S")+'] [' + current_filename  + "] Completed - Considering config: ["
-      + configFile + "]")
+print('['+datetime.now().strftime("%Y-%m-%d %H:%M:%S")+'] [' + current_filename  + "] Completed")
