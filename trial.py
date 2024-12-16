@@ -1,5 +1,6 @@
 from bs4 import BeautifulSoup
 
+
 # Sample HTML code
 html = """
 <div class="col-lg-4 col-md-4 col-sm-6 my-2 reportsDownload" data-cat="capital-market" data-section="equities" data-type="archives">
