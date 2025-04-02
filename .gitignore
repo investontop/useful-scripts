@@ -7,3 +7,7 @@
 *gitignore*
 *test*
 *youTube-Video*
+config*
+Twitter_config.ini*
+Twitter/
+readPDF/
