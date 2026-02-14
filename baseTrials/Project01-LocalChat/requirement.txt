@@ -1,0 +1,11 @@
+langchain
+langchain-community
+langchain-chains
+faiss-cpu
+sentence-transformers
+transformers
+pypdf
+python-docx
+accelerate
+bitsandbytes
+streamlit

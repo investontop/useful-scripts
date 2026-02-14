@@ -6,8 +6,6 @@ MODEL = "distilgpt2" # small example; replace with your local model
 DEVICE = 'cuda' if torch.cuda.is_available() else 'cpu'
 
 
-
-
 def generate_answer(context: str, question: str, model_name=MODEL, max_new_tokens: int = 150):
     tokenizer = AutoTokenizer.from_pretrained(model_name)
     model = AutoModelForCausalLM.from_pretrained(model_name).to(DEVICE)
